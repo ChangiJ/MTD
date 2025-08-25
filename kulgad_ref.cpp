@@ -2,17 +2,17 @@
 // [Boost 설치/링크(마운트) 가이드]                                                                          // Boost 준비 방법
 //  • Ubuntu/Debian:
 //      sudo apt update && sudo apt install -y libboost-all-dev                                          // 설치
-//      g++ -std=c++17 -O2 ws_beast_opts_local_nospace_annotated.cpp -o kulgad-cli -lboost_system -lpthread // 빌드
+//      g++ -std=c++17 -O2 kulgad_ref.cpp -o kulgad-cli -lboost_system -lpthread // 빌드
 //  • macOS(Homebrew):
 //      brew install boost                                                                                // 설치
-//      g++ -std=c++17 -O2 ws_beast_opts_local_nospace_annotated.cpp -o kulgad-cli \                      // 빌드시 경로 지정 필요할 수 있음
+//      g++ -std=c++17 -O2 kulgad_ref.cpp -o kulgad-cli \                      // 빌드시 경로 지정 필요할 수 있음
 //         -I/opt/homebrew/include -L/opt/homebrew/lib -lboost_system -lpthread                          // (Apple Silicon 예시)
 //  • 커스텀 경로(수동 설치):
-//      g++ -std=c++17 -O2 ws_beast_opts_local_nospace_annotated.cpp -o kulgad-cli \                      // -I/-L로 경로 지정
+//      g++ -std=c++17 -O2 kulgad_ref.cpp -o kulgad-cli \                      // -I/-L로 경로 지정
 //         -I$HOME/boost/include -L$HOME/boost/lib -Wl,-rpath,$HOME/boost/lib \                          // 런타임 rpath 설정
 //         -lboost_system -lpthread                                                                       // 링크
 // ------------------------------------------------------------------------------------------------------ // ───────────────────────────────────────────────────────────────────────────
-// Build: g++ -std=c++17 -O2 ws_beast_opts_local_nospace_annotated.cpp -o kulgad-cli -lboost_system -lpthread // 기본 빌드 명령
+// Build: g++ -std=c++17 -O2 kulgad_ref.cpp -o kulgad-cli -lboost_system -lpthread // 기본 빌드 명령
 // Run  :                                                                                                // 사용 예시 (HOST/PORT 인자 없음)
 //   ./kulgad-cli -s -on 100-231                                                                          // 채널 100~231 ON
 //   ./kulgad-cli 10,2,3 -s -on                                                                           // 10,2,3 ON (옵션 순서 자유)
