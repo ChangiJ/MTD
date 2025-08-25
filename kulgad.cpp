@@ -55,10 +55,10 @@ static void usage(){                                                            
       << "Usage:\n"                                                                                       // 제목
       << "  kulgad-cli [options] [channels]\n"                                                            // HOST/PORT 제거 -> 옵션/채널만
       << "Options:\n"                                                                                     // 옵션 설명
-      << "  -s | set        : set 모드 (채널 상태 변경)\n"                                               // set
-      << "  -g | get        : get 모드 (상태 조회)\n"                                                    // get
-      << "  -on | on        : set 값 true\n"                                                             // on
-      << "  -off| off       : set 값 false\n"                                                            // off
+      << "  -s | --set        : set 모드 (채널 상태 변경)\n"                                               // set
+      << "  -g | --get        : get 모드 (상태 조회)\n"                                                    // get
+      << "  -on | --on        : set 값 true\n"                                                             // on
+      << "  -off| --off       : set 값 false\n"                                                            // off
       << "Channels:\n"                                                                                    // 채널 지정 규칙
       << "  all | A-B | A,B,C | 혼합 가능. 반드시 공백 없이 입력 (예: 1,2,3,7-9)\n"                        // 공백 금지(코드로 처리하지 않음, 규칙만 안내)
       << "Notes:\n"                                                                                       // 참고
@@ -133,13 +133,13 @@ int main(int argc, char** argv){                                                
             std::string tok = argv[i];                                                                       // 현재 토큰 원문
             std::string low = lower_copy(tok);                                                               // 소문자 버전
 
-            if(low=="-s" || low=="set"){ want_set=true; continue; }                                          // set 모드
-            if(low=="-g" || low=="get"){ want_get=true; continue; }                                          // get 모드
-            if(low=="-on"|| low=="on"){                                                                      // on
+            if(low=="-s" || low=="--set"){ want_set=true; continue; }                                          // set 모드
+            if(low=="-g" || low=="--get"){ want_get=true; continue; }                                          // get 모드
+            if(low=="-on"|| low=="--on"){                                                                      // on
                 if(have_val && val==false){ std::cerr<<"Conflicting options: -on and -off\n"; return 1; }    // 충돌 방지
                 have_val=true; val=true; continue;                                                           // on 확정
             }
-            if(low=="-off"|| low=="off"){                                                                    // off
+            if(low=="-off"|| low=="--off"){                                                                    // off
                 if(have_val && val==true){ std::cerr<<"Conflicting options: -on and -off\n"; return 1; }     // 충돌 방지
                 have_val=true; val=false; continue;                                                          // off 확정
             }
