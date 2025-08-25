@@ -58,7 +58,7 @@ static void usage(){                                                            
       << "  -on | --on        : set 값 true\n"                                                             // on
       << "  -off| --off       : set 값 false\n"                                                            // off
       << "Channels:\n"                                                                                    // 채널 지정 규칙
-      << "  all | A-B | A,B,C | 혼합 가능. (예: 1,2,3,7-9)\n"                                               // 공백 금지(코드로 처리하지 않음, 규칙만 안내)
+      << "  all | A-B | A,B,C | 혼합 가능. (예: 1,2,3,7-9)\n";                                               // 공백 금지(코드로 처리하지 않음, 규칙만 안내)
 }
 
 // ─────────────────────────── 채널 파서: 공백 처리 없음, all/단일/범위/콤마 ───────────────────────────
@@ -140,6 +140,11 @@ int main(int argc, char** argv){                                                
             }
             if(!tok.empty() && tok[0]=='-'){ usage(); return 1; }                                            // 알 수 없는 옵션 → 도움말
             chanSpecs.push_back(tok);                                                                         // 그 외는 채널 스펙으로 저장
+        }
+        
+        if (want_get && !want_set && have_val) {
+            std::cerr << "Error: -on/-off cannot be used with -g/--get when -s/--set is absent\n";
+            return 1;
         }
 
         // 필수 검사                                                                                          //
