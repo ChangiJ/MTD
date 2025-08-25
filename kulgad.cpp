@@ -134,6 +134,11 @@ int main(int argc, char** argv){
             chanSpecs.push_back(tok);
         }
 
+        if (want_get && !want_set && have_val) {
+            std::cerr << "Error: -on/-off cannot be used with -g/--get when -s/--set is absent\n";
+            return 1;
+        }
+
         if(!want_set && !want_get){ usage(); return 1; }
         if(chanSpecs.empty()){ std::cerr<<"No channels provided. Use e.g. 1,2,3 or 7-12 or all\n"; return 1; }
         if(want_set && !have_val){ std::cerr<<"Missing value for set. Use -on or -off\n"; return 1; }
